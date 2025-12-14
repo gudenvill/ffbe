@@ -1,0 +1,2 @@
+-- Database setup for FFBE
+-- Add CREATE TABLE statements here as needed
