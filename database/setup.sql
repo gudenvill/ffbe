@@ -1,2 +1,15 @@
 -- Database setup for FFBE
--- Add CREATE TABLE statements here as needed
+
+CREATE TABLE IF NOT EXISTS products (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    sku TEXT NOT NULL UNIQUE,
+    published DATETIME DEFAULT CURRENT_TIMESTAMP,
+    price REAL NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS todos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    task TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'undone' CHECK(status IN ('undone', 'done'))
+);
