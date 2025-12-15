@@ -20,6 +20,16 @@ app.get('/admin/products', (req, res) => {
     res.render('admin/products/index', { products });
 });
 
+app.get('/admin/products/new', (req, res) => {
+    res.render('admin/products/new');
+});
+
+app.post('/admin/products', (req, res) => {
+    const { name, sku, price } = req.body;
+    db.prepare('INSERT INTO products (name, sku, price) VALUES (?, ?, ?)').run(name, sku, price);
+    res.redirect('/admin/products');
+});
+
 // API routes
 app.get('/api/products', (req, res) => {
     const name = req.query.name || '';
