@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const db = require('./database/db');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -14,6 +15,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
+app.get('/admin/products', (req, res) => {
+    const products = db.prepare('SELECT * FROM products').all();
+    res.render('admin/products/index', { products });
+});
+
 app.get('/', (req, res) => {
     res.send(`
         <!DOCTYPE html>

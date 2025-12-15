@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produkter - Admin</title>
+</head>
+<body>
+    <h1>Produkter</h1>
+
+    <div>
+        <input type="text" id="search" placeholder="Sök produkt...">
+        <button id="search-btn">Sök</button>
+    </div>
+
+    <a href="/admin/products/new">
+        <button>Ny Produkt</button>
+    </a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Namn</th>
+                <th>SKU</th>
+                <th>Publicerad</th>
+                <th>Pris</th>
+            </tr>
+        </thead>
+        <tbody id="products-table">
+            <% products.forEach(product => { %>
+                <tr onclick="window.location='/admin/products/<%= product.id %>'">
+                    <td><%= product.name %></td>
+                    <td><%= product.sku %></td>
+                    <td><%= product.published %></td>
+                    <td><%= product.price %> kr</td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>
