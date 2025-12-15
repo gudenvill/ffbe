@@ -20,6 +20,13 @@ app.get('/admin/products', (req, res) => {
     res.render('admin/products/index', { products });
 });
 
+// API routes
+app.get('/api/products', (req, res) => {
+    const name = req.query.name || '';
+    const products = db.prepare('SELECT * FROM products WHERE name LIKE ?').all(`%${name}%`);
+    res.json(products);
+});
+
 app.get('/', (req, res) => {
     res.send(`
         <!DOCTYPE html>

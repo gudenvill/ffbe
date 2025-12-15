@@ -37,5 +37,26 @@
             <% }) %>
         </tbody>
     </table>
+
+<script>
+    const searchInput = document.getElementById('search');
+    const searchBtn = document.getElementById('search-btn');
+    const tableBody = document.getElementById('products-table');
+
+    searchBtn.addEventListener('click', async () => {
+        const name = searchInput.value;
+        const response = await fetch(`/api/products?name=${encodeURIComponent(name)}`);
+        const products = await response.json();
+
+        tableBody.innerHTML = products.map(product => `
+            <tr onclick="window.location='/admin/products/${product.id}'">
+                <td>${product.name}</td>
+                <td>${product.sku}</td>
+                <td>${product.published}</td>
+                <td>${product.price} kr</td>
+            </tr>
+        `).join('');
+    });
+</script>
 </body>
 </html>
