@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= product.name %> - Admin</title>
+</head>
+<body>
+    <h1><%= product.name %></h1>
+
+    <p><strong>SKU:</strong> <%= product.sku %></p>
+    <p><strong>Pris:</strong> <%= product.price %> kr</p>
+    <p><strong>Publicerad:</strong> <%= product.published %></p>
+
+    <a href="/admin/products">Tillbaka</a>
+</body>
+</html>

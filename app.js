@@ -30,6 +30,11 @@ app.post('/admin/products', (req, res) => {
     res.redirect('/admin/products');
 });
 
+app.get('/admin/products/:id', (req, res) => {
+    const product = db.prepare('SELECT * FROM products WHERE id = ?').get(req.params.id);
+    res.render('admin/products/show', { product });
+});
+
 // API routes
 app.get('/api/products', (req, res) => {
     const name = req.query.name || '';
